@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+
+  sr-mysql:
+    image: sr-mysql-test
+    container_name: sr-mysql-test
+    build:
+      context: ../mysql
+    ports:
+      - ${SQL_PORT}:${SQL_PORT}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+  upload-picture-api:
+    image: upload-picture-api-test
+    container_name: upload-picture-api-test
+    build:
+      context: ../upload-picture
+      target: test
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ../upload-picture/test/:/usr/app/test/

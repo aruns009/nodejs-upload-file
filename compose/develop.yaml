@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+
+  sr-mysql:
+    image: sr-mysql
+    container_name: sr-mysql
+    build:
+      context: ../mysql
+    ports:
+      - ${SQL_PORT}:${SQL_PORT}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - sr-mysql-data:/var/lib/mysql
+
+  upload-picture-api:
+    image: upload-picture-api
+    container_name: upload-picture-api
+    build:
+      context: ../upload-picture
+      target: develop
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ../upload-picture/config/:/usr/app/config/
+      - ../upload-picture/controllers/:/usr/app/controllers/
+      - ../upload-picture/models/:/usr/app/models/
+      - ../upload-picture/routes/:/usr/app/routes/
+      - ../upload-picture/test/:/usr/app/test/
+      - sr-uploaded-images:/usr/app/images
+volumes:
+  sr-mysql-data:
+  sr-uploaded-images:
