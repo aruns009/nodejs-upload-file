@@ -4,7 +4,19 @@ This application basically uploads pictures to a server and returns a unique url
 
 Below are the steps to follow to run the sample NodeJS application
 
+## Git
+
+First you will need to install a GitBash:
+
+- [Download GitBash](https://git-scm.com/downloads)
+
+Clone the git repository:
+
 ```
+git clone https://github.com/aruns009/nodejs-upload-file.git
+```
+
+
 ## Pre-requisites
 - docker should be installed in your machine
 - docker-compose should be installed in your machine
@@ -14,7 +26,7 @@ Below are the steps to follow to run the sample NodeJS application
 Change into the cloned directory
 
 ```
-cd upload-picture
+cd nodejs-upload-file
 ```
 
 ## Docker
